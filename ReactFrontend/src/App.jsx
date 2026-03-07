@@ -7,6 +7,7 @@ import VerifyEmail from "./Pages/VerifyEmail"
 import Dashboard from './Pages/Dashboard';
 import ForgotPassword from "./Pages/ForgotPassword"
 import ResetPassword from './Pages/ResetPassword';
+import Protect from './ProtectedRoute/Protect';
 export default function App() {
   return (
     <div>
@@ -15,12 +16,20 @@ export default function App() {
         <Route path='/' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/verify-email' element={<VerifyEmail />} />
-        <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/forgot-password' element={<ForgotPassword/>}/>
-        <Route path='/reset-password' element={<ResetPassword/>}/>
+        <Route path='/forgot-password' element={<ForgotPassword />} />
+        <Route path='/reset-password' element={<ResetPassword />} />
+
+
+        <Route path='/dashboard' element={
+          <Protect>
+            <Dashboard />
+          </Protect>
+        } 
+        />
+
       </Routes>
 
-      <ToastContainer position="top-center" theme="dark" autoClose={2000}/>
+      <ToastContainer position="top-center" theme="dark" autoClose={2000} />
     </div>
   )
 }

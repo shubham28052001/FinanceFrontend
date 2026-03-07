@@ -1,10 +1,9 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useMemo } from 'react'
 import { toast } from "react-toastify"
+import { useNavigate } from 'react-router';
 export const UserContext = createContext();
 
-import { useNavigate } from "react-router";
 export default function AuthContext({ children }) {
-
     const navigate = useNavigate();
 
     const [user, setUser] = useState(() =>
@@ -21,13 +20,18 @@ export default function AuthContext({ children }) {
         setUser(null);
         localStorage.removeItem("user");
         localStorage.removeItem("accessToken");
-        toast.success("You are Logout Successfully", {
-            onClose: () => navigate("/")
-        })
+        toast.success("You are Logout Successfully");
+        navigate("/")
     };
 
+    const AuthValue = useMemo(() => ({
+        user,
+        loginUser,
+        logoutUser
+    }), [user]);
+
     return (
-        <UserContext.Provider value={{ user, loginUser, logoutUser }}>
+        <UserContext.Provider value={AuthValue}>
             {children}
         </UserContext.Provider>
     )

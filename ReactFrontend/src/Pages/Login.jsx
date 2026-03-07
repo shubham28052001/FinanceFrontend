@@ -1,4 +1,3 @@
-
 import React, { useState, useContext } from 'react';
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router";
@@ -29,6 +28,7 @@ export default function Login() {
             const res = await fetch("http://localhost:5000/api/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({ email, password })
             });
 
@@ -41,7 +41,6 @@ export default function Login() {
                 email: data.email,
                 accessToken: data.accessToken
             });
-            localStorage.setItem("accessToken", data.accessToken);
             resetForm();
             toast.success(data.message);
             navigate("/dashboard")
