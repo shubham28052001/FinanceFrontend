@@ -1,24 +1,18 @@
-import React, { useContext } from 'react'
-import { UserContext } from '../Context/AuthContext'
+import React from "react";
+import SideBar from "../Components/SideBar";
+import { Outlet } from "react-router";
 
 export default function Dashboard() {
 
-  const { user, logoutUser } = useContext(UserContext);
+    return (
+        <div className="flex min-h-screen bg-gray-100">
 
-  return (
-    <div className="p-6">
+            <SideBar />
 
-        <h2 className="text-2xl font-bold">
-            Welcome {user?.email || "User"}
-        </h2>
+            <div className="flex-1">
+                <Outlet /> 
+            </div>
 
-        <button
-            onClick={logoutUser}
-            className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
-        >
-            Logout
-        </button>
-
-    </div>
-  )
+        </div>
+    );
 }
