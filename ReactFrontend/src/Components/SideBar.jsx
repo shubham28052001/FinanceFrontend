@@ -4,9 +4,9 @@ import { NavLink } from 'react-router';
 
 export default function SideBar() {
     const { user, logoutUser } = useContext(UserContext);
-    const activeClass = " bg-amber-500 text-white p-1 text-center rounded-full font-semibold";
+    const activeClass = " bg-gray-200 text-black p-1 text-center rounded-md font-semibold";
     return (
-        <div className="w-64 bg-white shadow-lg text-center p-6 flex flex-col gap-4">
+        <div className="w-64 h-screen bg-white shadow-lg text-center p-6 flex flex-col gap-4">
             <div className='flex flex-col items-center gap-4'>
 
                 <img className='w-12 h-12 flex items-center justify-center rounded-full' 
@@ -18,31 +18,31 @@ export default function SideBar() {
             </div>
 
             <NavLink to="/dashboard" end className={({ isActive }) => {
-                return isActive ? activeClass : "hover:text-amber-500"
+                return isActive ? activeClass : "hover:text-gray-500"
             }}>
                 Dashboard
             </NavLink>
 
             <NavLink to="/dashboard/expenses" className={({ isActive }) => {
-                return isActive ? activeClass : "hover:text-amber-500"
+                return isActive ? activeClass : "hover:text-gray-500"
             }}>
                 Expenses
             </NavLink>
 
             <NavLink to="/dashboard/budget" className={({ isActive }) => {
-                return isActive ? activeClass : "hover:text-amber-500"
+                return isActive ? activeClass : "hover:text-gray-500"
             }}>
                 Budget
             </NavLink>
 
             <NavLink to="/dashboard/analytics" className={({ isActive }) => {
-                return isActive ? activeClass : "hover:text-amber-500"
+                return isActive ? activeClass : "hover:text-gray-500"
             }}>
                 Analytics
             </NavLink>
 
             <NavLink to="/dashboard/settings" className={({ isActive }) => {
-                return isActive ? activeClass : "hover:text-amber-500"
+                return isActive ? activeClass : "hover:text-gray-500"
             }}>
                 Settings
             </NavLink>

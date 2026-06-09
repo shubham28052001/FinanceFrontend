@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { toast } from "react-toastify";
 
-export default function AddTransactionForm({ closeModal }) {
-    const token = localStorage.getItem("token");
+export default function AddTransactionForm({ closeModal, setRefresh }) {
+    const token = localStorage.getItem("accessToken");
     const today = new Date().toISOString().split("T")[0];
     const [form, setForm] = useState({
         type: "income",
@@ -16,7 +16,8 @@ export default function AddTransactionForm({ closeModal }) {
     const setType = (value) => {
         setForm({
             ...form,
-            type: value
+            type: value,
+            category: ""
         })
     }
 
@@ -44,6 +45,7 @@ export default function AddTransactionForm({ closeModal }) {
                 return setError(data.message);
             }
             closeModal();
+            setRefresh(prev => !prev);
             toast.success(data.message);
             setForm({
                 type: "income",
@@ -60,7 +62,10 @@ export default function AddTransactionForm({ closeModal }) {
     }
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
+        setForm(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }))
     }
     return (
         <div className="absolute inset-0 bg-black/40 flex justify-center items-center">

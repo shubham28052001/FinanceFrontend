@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Suspense} from "react";
 import SideBar from "../Components/SideBar";
 import { Outlet } from "react-router";
 
@@ -9,8 +9,10 @@ export default function Dashboard() {
 
             <SideBar />
 
-            <div className="flex-1">
-                <Outlet /> 
+            <div className="flex-1 h-screen overflow-y-auto p-6">
+                 <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
+                    <Outlet />
+                </Suspense>
             </div>
 
         </div>

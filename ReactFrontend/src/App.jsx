@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { Suspense, lazy } from "react";
 import { useRoutes } from 'react-router';
 import { ToastContainer } from "react-toastify";
-import Login from './Pages/Login'
-import Signup from './Pages/Signup'
-import VerifyEmail from "./Pages/VerifyEmail"
-import Dashboard from './Pages/Dashboard';
-import ForgotPassword from "./Pages/ForgotPassword"
-import ResetPassword from './Pages/ResetPassword';
+
 import Protect from './ProtectedRoute/Protect';
-import Expenses from "./Components/Expenses"
-import MainContent from "./Components/MainContent"
-import Budget from './Components/Budget';
-import Analytics from './Components/Analytics';
-import Settings from './Components/Settings';
+
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
+import VerifyEmail from "./Pages/VerifyEmail";
+import ForgotPassword from "./Pages/ForgotPassword";
+import ResetPassword from "./Pages/ResetPassword";
+
+const Dashboard = lazy(() => import("./Pages/Dashboard"));
+const MainContent = lazy(() => import("./Components/MainContent"));
+const Expenses = lazy(() => import("./Components/Expenses"));
+const Budget = lazy(() => import("./Components/Budget"));
+const Analytics = lazy(() => import("./Components/Analytics"));
+const Settings = lazy(() => import("./Components/Settings"));
+
 export default function App() {
   const routes = useRoutes([
     {
@@ -54,15 +58,15 @@ export default function App() {
         },
         {
           path: "budget",
-          element: <Budget/>
+          element: <Budget />
         },
         {
           path: "analytics",
-          element: <Analytics/>
+          element: <Analytics />
         },
         {
           path: "settings",
-          element: <Settings/>
+          element: <Settings />
         }
       ]
     }
@@ -71,7 +75,9 @@ export default function App() {
 
   return (
     <>
-      {routes}
+      <Suspense fallback={<h2 style={{ textAlign: "center" }}>Loading...</h2>}>
+        {routes}
+      </Suspense>
 
       <ToastContainer
         position="top-center"
@@ -81,3 +87,5 @@ export default function App() {
     </>
   );
 }
+
+

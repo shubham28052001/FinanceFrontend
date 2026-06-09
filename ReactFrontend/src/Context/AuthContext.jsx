@@ -12,7 +12,7 @@ export default function AuthContext({ children }) {
 
     const loginUser = (userData) => {
         setUser(userData);
-        localStorage.setItem("user", JSON.stringify({ email: userData.email }));
+        localStorage.setItem("user",JSON.stringify(userData));
         localStorage.setItem("accessToken", userData.accessToken);
     }
 
