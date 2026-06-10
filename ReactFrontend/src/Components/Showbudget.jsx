@@ -15,7 +15,7 @@ export default function Showbudget() {
                 setLoading(true);
 
                 const budgetRes = await fetchWithAuth(
-                    "http://localhost:5000/api/budget/all-budgets"
+                    `${import.meta.env.VITE_API_URL}/api/budget/all-budgets`
                 );
 
                 const budgetData = await budgetRes.json();

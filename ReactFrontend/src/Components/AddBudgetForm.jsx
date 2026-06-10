@@ -36,7 +36,7 @@ export default function AddBudgetForm({ closeModal,setRefresh }) {
     try {
 
       const response = await fetchWithAuth(
-        "http://localhost:5000/api/budget/create-budget",
+        `${import.meta.env.VITE_API_URL}/api/budget/create-budget`,
         {
           method: "POST",
           headers: {

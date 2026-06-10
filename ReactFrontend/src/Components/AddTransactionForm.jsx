@@ -31,7 +31,7 @@ export default function AddTransactionForm({ closeModal, setRefresh }) {
             return setError("Amount should be greater than 0");
         }
         try {
-            const response = await fetch("http://localhost:5000/api/transaction/add-transaction", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/transaction/add-transaction`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

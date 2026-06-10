@@ -42,7 +42,7 @@ export default function Transactions({ refresh, filter, showDelete = false }) {
 
     try {
       const response = await fetchWithAuth(
-        `http://localhost:5000/api/transaction/transaction/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/transaction/transaction/${id}`,
         { method: "DELETE" }
       )
 

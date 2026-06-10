@@ -19,7 +19,7 @@ export default function SummaryCards({ refresh }) {
                 setLoading(true);
 
               
-                const response = await fetchWithAuth("http://localhost:5000/api/transaction/dashboard");
+                const response = await fetchWithAuth(`${import.meta.env.VITE_API_URL}/api/transaction/dashboard`);
                 const data = await response.json();
 
                 if (!response.ok) {
